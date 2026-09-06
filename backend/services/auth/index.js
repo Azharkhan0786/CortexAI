@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import connectDb from "./config/db.js";
 dotenv.config();
 
 const port=process.env.PORT
@@ -12,6 +13,7 @@ app.get("/",(req,res)=>{
 })
 app.listen(port,()=>{
     console.log(`auth started at ${port}`)
+    connectDb()
 })
 
-
+ 
