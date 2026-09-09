@@ -2,10 +2,18 @@ import express from "express";
 import dotenv from "dotenv";
 import proxy from "express-http-proxy";
 dotenv.config();
+import cookieParser from "cookie-parser"; 
+import cors from "cors";
 
 const port=process.env.PORT
 
-const app=express()
+const app=express() 
+app.use(cors({
+origin:process.env.FRONTEND_URL,
+    credentials:true
+}));
+app.use(express.json())
+app.use(cookieParser())
 
 app.use("/auth",proxy(process.env.AUTH_SERVICE))
 
